@@ -1,0 +1,21 @@
+temp=rowSums(`850mb.temp_2yr`[,4:19])
+temp=cbind(`850mb.temp_2yr`[,1],temp)
+colnames(temp)=c('year','temp')
+mxd_temp=merge(`MXD_imfs1~8`,temp)
+
+t=mxd_temp[1:58,]
+rh=rowSums(`850mb.relative.humidity`[,6:7])
+rh=cbind(`850mb.relative.humidity`[,1],rh)
+colnames(rh)=c('year','rh')
+t=merge(t,rh)
+t.lm=lm(value~temp+rh,data = t)
+summary(t1.lm)
+t1.lm=lm(temp~value,data = t)
+t2.lm=lm(value~temp*rh,data = t)
+anova(t.lm,t2.lm)
+AIC(t.lm)
+AIC(t1.lm)
+t1.lm$residuals
+shapiro.test(t.lm$residuals)
+plot(t.lm)
+plot()
