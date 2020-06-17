@@ -1,7 +1,7 @@
 library(ggmap)
 library(mapproj)
 
-register_google(key = 'AIzaSyBZW0sIUgm_mkeTxkMN0wUCxag7d2KbXiU')
+register_google(key = '')
 map <- get_map(location = c(lon = 121, lat = 24), zoom = 7,language = "zh-TW")
 ggmap(map)+ geom_point(aes(x = 121.4, y = 24.55, size = 1))
 
